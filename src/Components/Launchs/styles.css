@@ -1,0 +1,45 @@
+.launchs-container {
+    margin-top: 40px;
+}
+
+.launch {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    width: 60%;
+    height: 200px;
+    display: flex;
+    padding: 8px;
+    box-shadow: 1px 1px 9px 1px darkgrey;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.launch img {
+    width: 200px;
+    height: 200px;
+}
+
+.text-content {
+    margin-left: 20px;
+    font-size: 12px;
+    color: cadetblue;
+    width: 80%;
+}
+
+.text-content .tittles {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-content p {
+    font-size: 20px;
+    display: -webkit-box;
+    line-height: 30px;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-top: 20px;
+    color: grey;
+}
