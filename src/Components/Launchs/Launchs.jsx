@@ -5,34 +5,43 @@ import axios from "axios";
 
 
 class Launchs extends React.Component{
+    state={
+        launchesList:[]
+    }
 
     componentDidMount=()=>{
-        this.getLaunchs()
+        this.getLaunchesFromAPI();
     }
 
-    getLaunchs=()=>{
+    getLaunchesFromAPI=()=>{
         axios.get('https://api.spacexdata.com/v3/launches')
         .then((response)=>{
-            console.log(response.data)
+            this.setState({launchesList:response.data})
         })
         .catch((error)=>{
-            console.log("Error")
+            console.log("error")
         })
     }
+
+    AllLaunchs=()=>{
+        const launchComponents=this.state.launchesList.map((launch,index) =>{
+            const image=launch.links.flickr_images.length===0?'https://img.etimg.com/thumb/msid-77517418,width-640,resizemode-4,imgsize-139150/up-up-and-away.jpg':launch.links.flickr_images[0]
+            return <Launch
+            key={index}
+            banner={image} 
+            tittle={launch.mission_name} 
+            date={launch.launch_date_local} 
+            description={launch.details}/>
+        })
+        return launchComponents;
+    }
+
+
     render(){
         return(
+            
             <div className="launchs-container">
-                <Launch
-                banner="https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg" 
-                tittle="Falconaon" 
-                date="120 1203 4923 53" 
-                description="sdofanasdf adfnasodfpads faoodfoiiadf adsfnoasdfa sdfpadfa dsoifaos"/>
-
-                <Launch 
-                banner="https://farm8.staticflickr.com/7615/16670240949_8d43db0e36_o.jpg" 
-                tittle="vrasefasa" 
-                date="12 323 121 1221" 
-                description="faoodfoiiadf adsfnoasdfa sdfpadfa dsoifaos"/>
+                {this.AllLaunchs()}
             </div>       
             
         );
